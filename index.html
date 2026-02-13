@@ -1,0 +1,2296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veczom GameZone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           VECZOM GAME STORE - CYBERPUNK THEME
+           Modern Dark Navbar + Search + Game Links
+           ============================================ */
+        
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-purple: #bc13fe;
+            --neon-cyan: #00fff9;
+            --neon-pink: #ff00ff;
+            --dark-bg: #050508;
+            --darker-bg: #020203;
+            --glass-bg: rgba(10, 10, 15, 0.7);
+            --glass-border: rgba(0, 243, 255, 0.2);
+            --nav-bg: #0f0f0f;
+            --nav-gradient: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--dark-bg);
+            color: #fff;
+            overflow-x: hidden;
+            cursor: none;
+            padding-top: 80px;
+        }
+
+        /* Custom Neon Cursor */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s;
+            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+        }
+
+        .cursor-follower {
+            width: 40px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(0, 243, 255, 0.3) 0%, transparent 70%);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9998;
+            transition: transform 0.3s ease-out;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--darker-bg);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-blue);
+            border-radius: 5px;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* ============================================
+           MODERN NAVBAR WITH SEARCH
+           ============================================ */
+        nav {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 95%;
+            max-width: 1400px;
+            padding: 15px 30px;
+            background: var(--nav-gradient);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5), 
+                        0 0 20px rgba(0, 243, 255, 0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Search Bar Container */
+        .search-container {
+            position: relative;
+            flex: 0 0 300px;
+        }
+
+        .search-wrapper {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 12px 20px 12px 45px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            color: #fff;
+            font-family: 'Poppins', sans-serif;
+            font-size: 0.95rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        .search-input:focus {
+            border-color: var(--neon-blue);
+            box-shadow: 0 0 20px rgba(0, 243, 255, 0.3),
+                        inset 0 0 10px rgba(0, 243, 255, 0.1);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+        }
+
+        .search-input:focus + .search-icon {
+            color: var(--neon-blue);
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        /* Navigation Links */
+        .nav-links {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            position: relative;
+            padding: 8px 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-links a::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple));
+            transition: width 0.3s ease;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        }
+
+        .nav-links a:hover::before {
+            width: 100%;
+        }
+
+        .nav-links a.request-btn {
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            padding: 10px 25px;
+            border-radius: 25px;
+            color: #fff;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0, 243, 255, 0.3);
+            border: none;
+        }
+
+        .nav-links a.request-btn::before {
+            display: none;
+        }
+
+        .nav-links a.request-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 243, 255, 0.5);
+        }
+
+        /* Mobile Menu Toggle */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 30px;
+            height: 3px;
+            background: var(--neon-blue);
+            box-shadow: 0 0 10px var(--neon-blue);
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* ============================================
+           HERO SECTION
+           ============================================ */
+        #home {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            background: radial-gradient(circle at center, #0a0a12 0%, #000 100%);
+            margin-top: -80px;
+            padding-top: 80px;
+        }
+
+        /* Animated Background Particles */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+
+        .particle {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: var(--neon-blue);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--neon-blue);
+            animation: float 15s infinite;
+            opacity: 0;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(100vh) translateX(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) translateX(100px);
+                opacity: 0;
+            }
+        }
+
+        /* Grid Lines Effect */
+        .grid-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            perspective: 500px;
+            transform-style: preserve-3d;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(50px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 2;
+            padding: 20px;
+        }
+
+        .hero-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            margin-bottom: 20px;
+            position: relative;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .hero-title::before {
+            content: 'Veczom GameZone';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            filter: blur(20px);
+            opacity: 0.5;
+            animation: titleGlow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 20px var(--neon-blue)); }
+            to { filter: drop-shadow(0 0 40px var(--neon-purple)) drop-shadow(0 0 60px var(--neon-cyan)); }
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            letter-spacing: 8px;
+            color: var(--neon-cyan);
+            text-transform: uppercase;
+            margin-bottom: 50px;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            text-shadow: 0 0 20px rgba(0, 255, 249, 0.5);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            animation: fadeInUp 1s ease-out 1s forwards;
+        }
+
+        .neon-btn {
+            padding: 15px 40px;
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            background: transparent;
+            border: 2px solid var(--neon-blue);
+            color: var(--neon-blue);
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 0 10px rgba(0, 243, 255, 0.3), inset 0 0 10px rgba(0, 243, 255, 0.1);
+            font-family: 'Orbitron', sans-serif;
+            border-radius: 5px;
+        }
+
+        .neon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(0, 243, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .neon-btn:hover::before {
+            left: 100%;
+        }
+
+        .neon-btn:hover {
+            background: rgba(0, 243, 255, 0.1);
+            box-shadow: 0 0 30px var(--neon-blue), inset 0 0 20px rgba(0, 243, 255, 0.2);
+            transform: translateY(-2px);
+            color: #fff;
+        }
+
+        .neon-btn.purple {
+            border-color: var(--neon-purple);
+            color: var(--neon-purple);
+            box-shadow: 0 0 10px rgba(188, 19, 254, 0.3), inset 0 0 10px rgba(188, 19, 254, 0.1);
+        }
+
+        .neon-btn.purple:hover {
+            background: rgba(188, 19, 254, 0.1);
+            box-shadow: 0 0 30px var(--neon-purple), inset 0 0 20px rgba(188, 19, 254, 0.2);
+        }
+
+        /* ============================================
+           CATEGORY SECTION
+           ============================================ */
+        #category {
+            padding: 100px 50px;
+            background: linear-gradient(180deg, var(--dark-bg) 0%, #0a0a15 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 60px;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 200px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), var(--neon-purple), transparent);
+            margin: 20px auto;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .category-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.4s;
+            backdrop-filter: blur(10px);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-cyan), var(--neon-blue));
+            border-radius: 15px;
+            opacity: 0;
+            z-index: -1;
+            transition: opacity 0.3s;
+            filter: blur(10px);
+        }
+
+        .category-card:hover::before {
+            opacity: 0.7;
+            animation: borderRotate 3s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { filter: blur(10px) hue-rotate(0deg); }
+            100% { filter: blur(10px) hue-rotate(360deg); }
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 243, 255, 0.2);
+            border-color: var(--neon-blue);
+        }
+
+        .category-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px var(--neon-cyan));
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 10px;
+            color: #fff;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .category-count {
+            color: var(--neon-cyan);
+            font-size: 0.9rem;
+            letter-spacing: 2px;
+        }
+
+        /* Games Display Section */
+        .games-container {
+            max-width: 1400px;
+            margin: 80px auto 0;
+            display: none;
+        }
+
+        .games-container.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .game-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s;
+            position: relative;
+        }
+
+        .game-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 30px rgba(188, 19, 254, 0.3);
+            border-color: var(--neon-purple);
+        }
+
+        .game-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .game-card:hover .game-image img {
+            transform: scale(1.1);
+        }
+
+        .game-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.8) 100%);
+        }
+
+        .game-info {
+            padding: 25px;
+        }
+
+        .game-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            color: #888;
+            font-size: 0.85rem;
+        }
+
+        .game-price {
+            color: var(--neon-cyan);
+            font-size: 1.4rem;
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 249, 0.3);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .download-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            border: none;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        .download-btn:hover::before {
+            left: 100%;
+        }
+
+        .download-btn:hover {
+            box-shadow: 0 0 20px var(--neon-purple);
+            transform: translateY(-2px);
+        }
+
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 30px;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            cursor: pointer;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .back-btn:hover {
+            text-shadow: 0 0 10px var(--neon-cyan);
+            transform: translateX(-5px);
+        }
+
+<!-- Installation Guide Section -->
+<section id="install-guide">
+    <div class="install-container">
+        <h2 class="install-title">HOW TO INSTALL</h2>
+        <div class="title-line"></div>
+        
+        <div class="download-buttons">
+            <a href="https://www.7-zip.org/" target="_blank" class="install-btn zip-btn">
+                <span class="btn-icon">📦</span>
+                <span class="btn-text">DOWNLOAD 7ZIP</span>
+                <div class="btn-glow"></div>
+            </a>
+            
+            <a href="https://www.win-rar.com/download.html?&L=0" target="_blank" class="install-btn rar-btn">
+                <span class="btn-icon">🗜️</span>
+                <span class="btn-text">DOWNLOAD WINRAR</span>
+                <div class="btn-glow"></div>
+            </a>
+        </div>
+        
+        <p class="guide-text">Watch our step-by-step installation guide:</p>
+        <p class="no-video">No video tutorial available.</p>
+        
+        <div class="steps-box">
+            <h3 class="steps-title">Installation Steps:</h3>
+            <ul class="steps-list">
+                <li class="step-item">
+                    <span class="step-num">01</span>
+                    <span class="step-text">Download Direct File or all parts ( if available ) to the same folder</span>
+                </li>
+                <li class="step-item">
+                    <span class="step-num">02</span>
+                    <span class="step-text">Extract using WinRAR</span>
+                </li>
+                <li class="step-item">
+                    <span class="step-num">03</span>
+                    <span class="step-text">Run setup.exe</span>
+                </li>
+                <li class="step-item">
+                    <span class="step-num">04</span>
+                    <span class="step-text">Follow installation wizard</span>
+                </li>
+                <li class="step-item">
+                    <span class="step-num">05</span>
+                    <span class="step-text">Launch the game from desktop shortcut</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Floating particles -->
+    <div class="install-particles"></div>
+</section> 
+
+        /* ============================================
+           ABOUT SECTION
+           ============================================ */
+        #about {
+            padding: 100px 50px;
+            background: var(--darker-bg);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .about-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #aaa;
+            margin-bottom: 20px;
+        }
+
+        .neon-divider {
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--neon-purple), transparent);
+            margin: 30px 0;
+            box-shadow: 0 0 20px var(--neon-blue);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .neon-divider::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, #fff, transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .features-list {
+            list-style: none;
+            margin-top: 30px;
+        }
+
+        .features-list li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            color: #ddd;
+            font-size: 1.1rem;
+        }
+
+        .features-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--neon-cyan);
+            font-size: 1.5rem;
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+
+        .about-visual {
+            position: relative;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .floating-icon {
+            position: absolute;
+            font-size: 5rem;
+            animation: floatIcon 6s ease-in-out infinite;
+            filter: drop-shadow(0 0 20px var(--neon-blue));
+        }
+
+        .floating-icon:nth-child(1) { animation-delay: 0s; color: var(--neon-blue); }
+        .floating-icon:nth-child(2) { animation-delay: 2s; color: var(--neon-purple); font-size: 4rem; top: 20%; right: 20%; }
+        .floating-icon:nth-child(3) { animation-delay: 4s; color: var(--neon-cyan); font-size: 6rem; bottom: 20%; left: 20%; }
+
+        @keyframes floatIcon {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(10deg); }
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        footer {
+            background: #000;
+            padding: 40px 50px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+        }
+
+        .footer-text {
+            color: #555;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .social-links a {
+            color: var(--neon-blue);
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .social-links a:hover {
+            color: var(--neon-purple);
+            text-shadow: 0 0 20px var(--neon-purple);
+            transform: translateY(-5px);
+        }
+
+        /* ============================================
+           RESPONSIVE DESIGN
+           ============================================ */
+        @media (max-width: 968px) {
+            .about-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-visual {
+                height: 300px;
+                order: -1;
+            }
+            
+            .search-container {
+                flex: 0 0 250px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                width: 95%;
+                padding: 15px 20px;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .search-container {
+                flex: 1 1 100%;
+                order: 2;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 100px;
+                right: -100%;
+                width: 90%;
+                height: auto;
+                background: var(--nav-gradient);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 25px;
+                padding: 40px 20px;
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.1);
+                transition: right 0.3s;
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            }
+            
+            .nav-links.active {
+                right: 5%;
+            }
+            
+            .menu-toggle {
+                display: flex;
+                order: 1;
+            }
+            
+            #home, #category, #about {
+                padding: 80px 20px;
+            }
+            
+            .hero-title {
+                letter-spacing: 3px;
+            }
+            
+            .categories-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .games-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--darker-bg);
+            z-index: 10000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s;
+        }
+
+        .loader.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .loader-text {
+            font-size: 3rem;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            background: linear-gradient(45deg, var(--neon-blue), var(--neon-purple), var(--neon-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: loaderPulse 1.5s infinite;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        @keyframes loaderPulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(0.95); }
+        }
+
+        /* Search Results Dropdown */
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--nav-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            margin-top: 10px;
+            max-height: 300px;
+            overflow-y: auto;
+            display: none;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            z-index: 1001;
+        }
+
+        .search-results.active {
+            display: block;
+        }
+
+        .search-result-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-result-item:hover {
+            background: rgba(0, 243, 255, 0.1);
+            padding-left: 25px;
+        }
+
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .search-result-item span {
+            color: #fff;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loader" id="loader">
+        <div class="loader-text">Veczom</div>
+    </div>
+
+    <!-- Custom Cursor -->
+    <div class="cursor" id="cursor"></div>
+    <div class="cursor-follower" id="cursor-follower"></div>
+
+    <!-- Modern Navbar with Search -->
+    <nav>
+        <div class="search-container">
+            <div class="search-wrapper">
+                <input type="text" class="search-input" id="searchInput" placeholder="Search games..." autocomplete="off">
+                <span class="search-icon">🔍</span>
+                <div class="search-results" id="searchResults"></div>
+            </div>
+        </div>
+        
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#home" onclick="closeMenu()">Home</a></li>
+            <li><a href="#about" onclick="closeMenu()">About Us</a></li>
+            <li><a href="#category" onclick="closeMenu()">Games</a></li>
+            <li><a href="#category" onclick="closeMenu()">Categories</a></li>
+            <li><a href="https://docs.google.com/forms/d/e/1FAIpQLSfHFnwV_R_qFhEauHPzwE5nfv2RL6DetwUN33IwOJ31hBuBxw/viewform" target="_blank" class="request-btn" onclick="closeMenu()">Request</a></li>
+        </ul>
+        
+        <div class="menu-toggle" id="menuToggle" onclick="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="home">
+        <div class="particles" id="particles"></div>
+        <div class="grid-overlay"></div>
+        
+        <div class="hero-content">
+            <h1 class="hero-title">Veczom GameZone</h1>
+            <p class="hero-subtitle">Play Beyond Reality</p>
+            <div class="hero-buttons">
+                <a href="#category" class="neon-btn">Explore Games</a>
+                <a href="#category" class="neon-btn purple">Categories</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Category Section -->
+    <section id="category">
+        <h2 class="section-title">Game Categories</h2>
+        
+        <div class="categories-grid" id="categoriesGrid">
+            <div class="category-card" onclick="showGames('action')">
+                <span class="category-icon">⚔️</span>
+                <h3 class="category-title">Action</h3>
+                <p class="category-count">5 Games Available</p>
+            </div>
+            
+            <div class="category-card" onclick="showGames('racing')">
+                <span class="category-icon">🏎️</span>
+                <h3 class="category-title">Driving</h3>
+                <p class="category-count">5 Games Available</p>
+            </div>
+            
+            <div class="category-card" onclick="showGames('adventure')">
+                <span class="category-icon">🗺️</span>
+                <h3 class="category-title">Adventure</h3>
+                <p class="category-count">5 Games Available</p>
+            </div>
+            
+            <div class="category-card" onclick="showGames('sports')">
+                <span class="category-icon">⚽</span>
+                <h3 class="category-title">Sports</h3>
+                <p class="category-count">5 Games Available</p>
+            </div>
+            
+            <div class="category-card" onclick="showGames('shooting')">
+                <span class="category-icon">🔫</span>
+                <h3 class="category-title">Shooting</h3>
+                <p class="category-count">5 Games Available</p>
+            </div>
+        </div>
+
+        <!-- Games Display Container -->
+        <div class="games-container" id="gamesContainer">
+            <a class="back-btn" onclick="showCategories()">← Back to Categories</a>
+            <h3 class="section-title" id="categoryTitle">Action Games</h3>
+            <div class="games-grid" id="gamesGrid">
+                <!-- Games will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="about-container">
+            <div class="about-content">
+                <h2>About Veczom</h2>
+                <div class="neon-divider"></div>
+                <p>Veczom GameZone is a futuristic digital distribution platform designed for the next generation of gamers. Born from the neon-lit streets of cyberpunk dreams, we bring you the most immersive gaming experience.</p>
+                <p>Our platform features cutting-edge titles across all genres, from high-octane racing simulators to strategic masterpieces that challenge your mind.</p>
+                
+                <ul class="features-list">
+                    <li>Instant Digital Downloads</li>
+                    <li>Exclusive Neon Editions</li>
+                    <li>24/7 Cyber Support</li>
+                    <li>VR-Ready Titles</li>
+                    <li>Community Driven</li>
+                </ul>
+            </div>
+            
+            <div class="about-visual">
+                <div class="floating-icon">🎮</div>
+                <div class="floating-icon">🕹️</div>
+                <div class="floating-icon">🔫</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p class="footer-text">© 2026 Veczom GameZone. Play Beyond Reality. | By Dinupa Sithmira</p>
+        <div class="social-links">
+            <a href="#">⚡</a>
+            <a href="#">🌐</a>
+            <a href="#">💬</a>
+        </div>
+    </footer>
+
+    <script>
+        /* ============================================
+           VECZOM GAME STORE - JAVASCRIPT
+           Complete Game Database with Images & Links
+           ============================================ */
+        
+        // Complete Game Database - EASY TO ADD MORE GAMES
+        // Format: title, price, image URL, download URL, rating, size, category
+        const gamesDatabase = [
+            // ACTION GAMES
+            {
+                title: "Far Cry 2",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/9/97/Far_Cry_2_cover_art.jpg",
+                download: "https://dayuploads.com/a5fO2t35lMrywzw/file",
+                rating: "Mature",
+                size: "2.4GB",
+                category: "action"
+            },
+            {
+                title: "Far Cry 3",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/c/c6/Far_Cry_3_PAL_box_art.jpg/250px-Far_Cry_3_PAL_box_art.jpg",
+                download: "https://dayuploads.com/ACRX0N8bg4pocJo/file",
+                rating: "Mature",
+                size: "7.5GB",
+                category: "action"
+            },
+            {
+                title: "Far Cry 3 Blood Dragon",
+                price: "Free",
+                image: "https://m.media-amazon.com/images/M/MV5BNjZjNDVmMjMtNzYxYi00ZDc5LTgzOGQtMjZmYmM3NDUzYTEyXkEyXkFqcGc@._V1_.jpg",
+                download: "https://dayuploads.com/mbkiXBxTdozNinD/file",
+                rating: "Mature",
+                size: "3.3GB",
+                category: "action"
+            },
+            {
+                title: "Far Cry 4",
+                price: "Free",
+                image: "https://gepig.com/game_cover_460w/2294.jpg",
+                download: "https://dayuploads.com/wb2htM5kHx2JAMt/file",
+                rating: "Mature",
+                size: "14.7GB",
+                category: "action"
+            },
+            {
+                title: "Far Cry New Dawn",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/9/96/FC_New_Dawn_cover_art.jpg",
+                download: "https://game.cloudnet.one/api/increment-download.php?game_id=302&link_id=268",
+                rating: "Mature",
+                size: "12.7GB",
+                category: "action"
+            },
+            {
+                title: "Far Cry Primal",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/1/18/Far_Cry_Primal_cover_art.jpg",
+                download: "https://dayuploads.com/jC5xpr7SLsle5cg/file",
+                rating: "Mature",
+                size: "17.09GB",
+                category: "action"
+            },
+            {
+                title: "Far Cry 5",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEh0STVLWiqbCe20cgNCOdBqDKWiLc2ScHZFvagLe9ddQpymTo3UlLh9gCQy50hRUw7a77JWKO_hgi_hT7XSfvjOcOVhyL2mFjngEboTD1P__RHRxtoUZg9w9mN6Wi40WU9w6mLXaI68_mDX0iBeczxhm9JOi_tPbuvccZe3VuO5jdeBbPUr1vDUVpAg_XE",
+                download: "https://dayuploads.com/VNP4f8CaMsHAMqT/file",
+                rating: "Mature",
+                size: "38.2GB",
+                category: "action"
+            },
+            {
+                title: "Far Cry 6",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEgdr1w0_YMjH-k91BHjSr03eVSsW6cjfbiFS09c7dCCAOcYRQ9IviEuFIGGaMnjUA6SJVJs33LxeVvPO9Ny2hoBmY2dip1VA0vvvzKwT19BbJS9maKHijHv-whvuvB5JoL9_cK1L-c-zBvxdMZUDBacg9WUy93GlvobMCH2mYUm7ldDExYsvO8Z64BCNuM",
+                download: "https://dayuploads.com/8ghYUyuHlKbHSxa/file",
+                rating: "Mature",
+                size: "84.9GB",
+                category: "action"
+            },
+            {
+                title: "Black Myth: Wukong",
+                price: "Free",
+                image: "https://miro.medium.com/v2/resize:fit:1400/1*mdENk2S0hw8Xf11JEiGPCA.jpeg",
+                download: "https://dayuploads.com/uYdmZBBDFO4tSn5/file",
+                rating: "Mature",
+                size: "96.22GB",
+                category: "action"
+            },
+            {
+                title: "Nero",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEgYsS7ouidGqzZtPjjTt-_pCWrCPTwZH3G6-1BNYXM7Hr9NLeOWGBLGyK9W1gY0QVGUnj6spJGLnzENvA9mxsMDCArXqgbxKao5ie3nwWHh0i-TgkP-GSNVhRtPUyLzh5dZoDs3xwpcxC4zczgRnxi9EabflkjiMzj3hifA7k0yRJC2FibFvmOuOSmLpW8",
+                download: "https://game.cloudnet.one/api/increment-download.php?game_id=153&link_id=125",
+                rating: "Mature",
+                size: "8.5GB",
+                category: "action"
+            },
+            {
+                title: "GTA 2",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/2/2e/GTA2_Box_art.jpg/250px-GTA2_Box_art.jpg",
+                download: "https://mega.nz/file/Xzx0iI5D#bMERZy23lLMp6GgFnWq1Tg8YnJQcHmaCrTCcT3HDOpw",
+                rating: "Mature",
+                size: "344MB",
+                category: "action"
+            },
+            {
+                title: "GTA 3 The Definitive Edition",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/b/be/GTA3boxcover.jpg",
+                download: "https://orion.dlproxy.uk/download/22caYocy6wa4RiBmhjEtCpl4vToiqPaJibJFkhtXF0DYfbItQdnx5fRsQtFUKtANaOtgZhcHR55-1M6KOh6OIqZRgkM4k9TOZEBWwuQ-YrGxVvKQuf4u1daB3mB1Fq8ptBAHoztKE1-_eyRDUIKFRWV3vCL3eRMG1wUyMwa1yp04g29-PH2AKF1KC7eoMB8F3Zy9yQUX8JZjgqtR69Gec1DzupybtqBnxbCafk_ZVYJ-QDdRTEvA6fH5Kt7PgayrLt6V8HGt48EhQfZE6hpQdnwN1djUC_lCnA69aRl6XCHAj8mh2pymNeZWWF4H8Q8ZHELwkdSeusooCM45l4mgP6o8HkBpJGoKNZ1pWYCIE_vARl59um-Fxqu5wOi7TG-CGxAJhkstmqaNfX9ZND4UWOvfuoivoLWmHOFLrrAP30Vq6T-boSO1Yjem_ElzOHcrdC2lYYtdM8YyqMdqiTxcOAFgFBNEMQvJgvm0FezUOgyYFfHogNngdwGALOvcuaxKqRERFg5oaL8gxdmJFfalIQ6_5h0J3RNxN38QF4bx1ZeHEIjV8SB_CHkwCxg8P9MtW8TAJKPcc8UyAxA6IV4wSs3ie03b2P1AJPCyU1DRNj3LnhWBeao8gP7zb4kQFuYRAJ9rhNfB47jQKAjp2nnCTQ?sig=_DMqw-54YsW0W2Yr-ZqC3rDKWsqQhr5NxVMnC_kBvjQ",
+                rating: "Mature",
+                size: "4.4GB",
+                category: "action"
+            },
+            {
+                title: "GTA Vice City",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/c/ce/Vice-city-cover.jpg",
+                download: "https://dayuploads.com/22oJLVQQ789iWGz/file",
+                rating: "Mature",
+                size: "1.17GB",
+                category: "action"
+            },
+            {
+                title: "GTA San Andreas",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/c/c4/GTASABOX.jpg",
+                download: "https://dayuploads.com/BbpkOrUyTX5rLyO/file",
+                rating: "Mature",
+                size: "3.4GB",
+                category: "action"
+            },
+            {
+                title: "GTA IV",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/b/b7/Grand_Theft_Auto_IV_cover.jpg",
+                download: "https://dayuploads.com/NUspT7WSXainJcH/file",
+                rating: "Mature",
+                size: "13.61GB",
+                category: "action"
+            },
+            {
+                title: "GTA V",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/a/a5/Grand_Theft_Auto_V.png",
+                download: "https://dayuploads.com/mNCOFcW980lbRh4/file",
+                rating: "Mature",
+                size: "62GB",
+                category: "action"
+            },
+            {
+                title: "GTA VI",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEib_w2UWCLqEQggHnjdywL8yuGkTQk98dF1mv6MupfW3A8tmNDlTZY_DHWpMvdPX8JxT-3K-KHQ1w3uge1be2UoMtajFvPlpdM4IyI768CA1DhHYRIApDkbn3MjVq-_2zd3_7f8VfKn_c8dD96hZ-x_s4FeNjnnrQnK6MMoc77kPb_3mJYNfz5SNLZjgNk",
+                download: "https://www.rockstargames.com/VI/downloads",
+                rating: "Mature",
+                size: "145GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed 1",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEiUVZ7I60inIOYaVeKCIPruJn5Gg_AT6otnzC-yhCQtZO8VKFxWLc7lSAHa9fdkrP4sAA5D7qzTQNb6J8ATN2ze7efGdc6A2tcCZtANUZGQtwE9rI_ohPoorYHT6_zWFm2Uy-Li0hMSbHi0sCakQXEYsklyMWM983_lg820Q9LypsCtUvsUVIsTTmE8nv8",
+                download: "https://dayuploads.com/FxwfIBRAKltz07E/file",
+                rating: "Mature",
+                size: "4.4GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed 2",
+                price: "Free",
+                image: "https://cdn2.unrealengine.com/ac2-gamename-store-landscape-2560x1440-2560x1440-aa944fa0e8c6.jpg",
+                download: "https://dayuploads.com/XBW6YSKCshgxZ2U/file",
+                rating: "Mature",
+                size: "3.2GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed brotherhood",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEh0d1e_QeQtusj_nHId9KwWYvogNye2nqQGxpRWlShNc2dJ2paslZLRKtQmBbcETQd1CQWPF57QL8gwUnd9SlUapcFEMpz5P31Pf-I71V7YYVi_Ur65WN8vbQcskINPFalZPJBUzDfs1su1_hMBR-M31gtkI_cmY-brcX-r2WXUxUJWhVGQh8XWaA1HL_I",
+                download: "https://dayuploads.com/OCEG78X3CTljl2q/file",
+                rating: "Mature",
+                size: "5.4GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed Revelations",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEicBRnHFXg1chOjsmouxdxCFnzIWtSJtRzz0o8cYlok9bFTP7vLNOonJwe27wkzTlqSfWgfQfirgf0394-3X__nbYfI4DZmGs8acJdBTw0xG67roECfsAbUgq3j3BrpQptJBW0OceSHLLGSIamMeJuwdH05fud0OJYitPDC9k3CSNU8CvOZaPHNy2P-pPE",
+                download: "https://dayuploads.com/joiAEsYuEPWnRjd/file",
+                rating: "Mature",
+                size: "5.1GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed 3 Remastered",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEj7x5uAXBYditUwZFAc-qkf4UA3N9Plpo_mCFdVCp4B4XnGCR70ZdKmuioo68UY6GAugkAOSn5e_gCMNotgjBzf-RWUXBvkfq4lWi__Z9EA_f52POvP6TpXWUZBTNew5r3KZ8VWl6aGgumP63RFNQ5B0GG7j97gxRW7ZjUl6RIFRmGBYyraen0XZP0G3hE",
+                download: "https://orion.dlproxy.uk/download/22caYocy6wa4RiBmhjEtCpl4vToiqPaJibJFkhtXF0DYfbItQdnx5fRsQtFUKtANaOtgZhcHR55-1M6KOh6OIqZRgkM4k9TOZEBWwuQ-YrFX167rQZ0llthxAHrb_YL3fqf5BwkXW7W0ewt_JUZ3EuycbOwR5o7zHpJLsJhVFswbMr4Z6idRnD4bRR2ixUtnIG2FEE_ak0QsfZBAJwHCg_-RuIuTbUv2uPImCDOQS64TY-Q8rbO_QlhK2GNZO-tY5a4iMKkeoqCQ6iuiv2oDwlBiFCeuUqnhI39-RTQ6FneXqovYHZRXjc4PTKgKtcJLjVXdIdDKGhRnhDo4H2h0zMdJd1zcVqMI-vcSZz5yY5iXaq0rldC9rUueQaznTtHidx8Mdirfvm9-zJcxwDr0LJcYMGBbdikhKCSl18dsuvfNcYu4iAm7QogWy1c5PdkaAF1A___QdPC_NMqGGNknFQgWSV-zqdiT4VT5NTEDa_5yHBVdUFGLfKKcEB8X3kDMO4rMeiZUAhPMtCHjilC18RqZaFwEB9otivQJH_4-bVkM665j9cRGfamk3IhiNumRW2hMLwFZZyFSwQXmzbVYRZjC59WlMVG0nXQvcYx_XKsBkxoUHy4N3GP7sbDzJZLEaXvby3bUesKFZis5DkcmZA?sig=sK61CSIjhRJgh7E9dwxs05HDK6-4YzLaJDufT6v0n5Y",
+                rating: "Mature",
+                size: "26.6GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed 4 (Black Flag)",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/2/28/Assassin%27s_Creed_IV_-_Black_Flag_cover.jpg",
+                download: "https://www.mediafire.com/file/2b3bghkx4159bwt/Assassin%2527sCreedIVBlackFlagv1.0.zip/file",
+                rating: "Mature",
+                size: "5.5GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed Rouge",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/a/ae/Assassin%27s_Creed_Rogue.jpg",
+                download: "https://apophis.dlproxy.uk/download/E_frPOiAuu2SDbWt8LeM4H50poshDKuB-DPA3BQY_scEwortxp6gDHblecUg2-oKc8WS6t3P69Lo7OpoJWCjxjmr6AM1DKhTbR7gOyS5nC172kyEJ80uNa6RsVM1MJbwKWFsBVo2oChBJ3GxKJso9eiW0Ksq5EMBfLAl1eaqn1hw9yy03KPfLRoFZQu-9tFfbnm0TjhP3Onhwd97d6eu6ISY5JYJCZlRQY25Rfe41vN4rQarx-XNERp8QqjouQd34_4xlGaWeNhoCZPcWa1KHgiumKyLK64aWZKPf6ln000v0bTtaR65WTENy20lFl9LZBP6za6A5owhIM8_TqfsnGrRyAkicrLWeE1jiyzLMtYR775mwkpky2dLUyNGJWP8SXGS4wv4F03OkphXdCWq4-SkdEgGpN3_YonHDjhl-qbH6WI6LYKkXLvK7c7wWmHPDkkLdglo_cA42Tiqi4TllImJxwtmxqSXusIyiQF3P1lG0RjddIfUNW2kw3PAvQ2Fv6H4uXRya9BzN_aucL2WA94soJsMF-RPD6J_jKJTsQ0DxH44Z9z2NrU7s7UcyQSLGB3Di-KBKE3hXPbaHkbq0J1THUuBO_ZuTtH_QKvCL0hYtcrLlQkmPcYh3rEv2AfU?sig=OADIEDqwW1E2a94mAEbMdxo3UWzMdB9MjkhGpM_rOGI",
+                rating: "Mature",
+                size: "8.6GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed Unity",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjzPkUeI42CyEdlHHpljIT5rvLDLixEM7kKelaSQUnUcJuQz3S3lirToc5KJGDolYpQ2L5wGgM2n87QLh3LXlS1Ot0mzGbcvq8dxH9vNJJxApAoruJ8cmepTKeqZm4NW2XX7hO7t_1ZP0CYsbRW4vRFHh3XbdGjhbAN9bh-ezpTJBBvj9k9hUvHLE0LFs0",
+                download: "https://dayuploads.com/8AHlTNI3GuAzlo0/file",
+                rating: "Mature",
+                size: "32.05GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed Origins",
+                price: "Free",
+                image: "https://m.media-amazon.com/images/I/A1Lc+0V8SfL._AC_UF1000,1000_QL80_.jpg",
+                download: "https://dayuploads.com/e7LrneMd08Zmi2L/file",
+                rating: "Mature",
+                size: "32.05GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed Odyssey",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/9/99/ACOdysseyCoverArt.png/250px-ACOdysseyCoverArt.png",
+                download: "https://dayuploads.com/DC8HLMZySX3E6cK/file",
+                rating: "Mature",
+                size: "37.3GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed Syndicate Gold Edition",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjTNPOmn2kS3MApmZulgNJ8k2SzICVHsNHR2QaNMF6ZZ6jAS5GaFEdSNwMcv17rjCS8SAK5Xoe0SBUMcNim1cg5UaUxVOKfGuToS0Ts9V4L8LXJn8hHJZUd36bQ8cpPbkSjtP3_4exKQ_jAzDGeY7nPSR1e2JSjg9XBo1_MWskDfzlq_UvAglqwaeoqHcw",
+                download: "https://dayuploads.com/KOX06ursP52g9Sg/file",
+                rating: "Mature",
+                size: "23.6GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed  Mirage",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/2/23/Assassin%27s_Creed_Mirage_cover.jpeg",
+                download: "https://dayuploads.com/90oeTgVZMOsexgI/file",
+                rating: "Mature",
+                size: "20.7GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed Valhalla",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/f/ff/Assassin%27s_Creed_Valhalla_cover.jpg/250px-Assassin%27s_Creed_Valhalla_cover.jpg",
+                download: "https://filecr.com/pc-games/assassins-creed-valhalla-free-download-0012/?id=500239488000",
+                rating: "Mature",
+                size: "77GB",
+                category: "action"
+            },
+            {
+                title: "Assassin's Creed Shadows",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/5/54/Assassin%27s_Creed_Shadows_cover.png/250px-Assassin%27s_Creed_Shadows_cover.png",
+                download: "https://store.epicgames.com/en-US/p/assassins-creed-shadows",
+                rating: "Mature",
+                size: "123GB",
+                category: "action"
+            },
+            {
+                title: "Mafia 1  Definitive Edition",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/a/ae/Mafia_Definitive_Edition.jpg",
+                download: "https://dayuploads.com/MT9l0ZGtB0z9PLs/file",
+                rating: "Mature",
+                size: "18.7GB",
+                category: "action"
+            },
+            {
+                title: "Mafia 2",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEidaL6KwSjUKcf0bg-Fs4Ups9J1mx4HXTi8V-y6jhHrzEsBtsNQCzuCjysqGfGzyKB-YPEHzCBoqOZ0hfCiweZCK2XhL_yQKLLV-idGjXAl6vgG9KKhyx18EbYKPJE9MLO2sY4OjAAaFTWNb7yDqFArbZo6TNglD-kQF_okYFyDFdydHqWU278f_79dxJE",
+                download: "https://dayuploads.com/02DMidf877vbge6/file",
+                rating: "Mature",
+                size: "10.9GB",
+                category: "action"
+            },
+            {
+                title: "Mafia 2 Definitive Edition",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjydaGF4fFA_kUdG3smBqltdZeqE3ihJvzso6WZjHmhICPNVz4slm52MK2lQsQBB-4wF7IbWIv4Jv0i0zmEdt1nXDltjP8ZfmGNim4Q3MdZcPxmtEaWd8KK3AS3SdrfcLy9AIxSZi4hHmmhspQzwOgDq9DbBCAZjX_vfWnp8QZgXv9gcLVqRb0o7TmXi9A",
+                download: "https://dayuploads.com/6xP6HdxxyLH3obA/file",
+                rating: "Mature",
+                size: "12.2GB",
+                category: "action"
+            },
+            {
+                title: "Mafia 3 Definitive Edition",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEgxeXQHCuK0f3Kmum-lxs0JiiTMc6bETuEOrHEoYrJCNyrhmKuAb_rxIeMRsgTzazuo2s3AHAv9EFNrR-5mGs7xf-H_-FoXnYarYjSWjATJ4Jbqs-m1Nm-mi36OdZJyExw2udOKHj_ibHj6sJTNRV8AhpivjiWYHwfG366jDhABlKtThWN7bWTBs0A7KiM",
+                download: "https://dayuploads.com/Uyk0mvLC2fHLzOX/file",
+                rating: "Mature",
+                size: "34.06GB",
+                category: "action"
+            },
+            {
+                title: "Watch Dogs 1",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjpV3qT4vIBZQYIDhVlUb6romjYYN5yFbzT-yWOQ6jbH7R3Bkbaz3BpUjS2ZoTWjCdeS-rLuekH_2fbmBMLGffSTK4w9rfGgVPj_2AH_2tVuelU9Wej4fb0_Bqn6jnpNtpaOVAL44yyQuerCExAs9a16cVim3yrTFh-J61JC9VstCaOel3lA_nisDfQmHo",
+                download: "https://dayuploads.com/948vnmtR8hk4tQ2/file",
+                rating: "Mature",
+                size: "13.5GB",
+                category: "action"
+            },
+           {
+                title: "Watch Dogs 2",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEgYy-fL25QXo94ipUF6rI-BBg2Kt_K49J5NYZ-tpuN8BGRGAfmfrKbtVlUjO0YkKWtOy2vn3VtABqD_wWG-bpDd_zdAPL9SxIU6SHPRQIucO4rOw-M5TrExu9yBF7KqidfT2k_bjG895aH-bZqxo6LR1775EkMeh2yM29BcoCbKBCIe0V67nLIKiemzRno",
+                download: "https://dayuploads.com/70RyRK5YxYbeDNV/file",
+                rating: "Mature",
+                size: "22.8GB",
+                category: "action"
+            },
+           {
+                title: "Watch Dogs Legion",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjLE7ygt9anqi7YnY5aQqgTUFFjXOadEqGXXj4ozJaWM_v-jgUP61tUr2PB0vU9-tV4K-YXAwjaNIsfKkmwlEwpOK3hYA4ecF3Pbl42j47Z3fSZKH9pRvF2EI2WUBLi2zTJTnEjk-qTZ1L7Z-K2ciGR90LF4rLg5bQkozQorhWAUVRiL3hE52PcMZx2G48",
+                download: "https://dayuploads.com/cL83GMgcvE6jPaH/file",
+                rating: "Mature",
+                size: "57.1GB",
+                category: "action"
+            },
+           {
+                title: "Wheelman",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/4/4f/The_Wheelman.jpg",
+                download: "https://dayuploads.com/zv77rJR3K22IXYR/file",
+                rating: "Mature",
+                size: "6.8GB",
+                category: "action"
+            },
+            // Driving GAMES
+            {
+                title: "Forza Horizon 3",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/5/54/Forza_horizon_3_cover_art.jpg",
+                download: "https://dayuploads.com/hxO1Y6WoAuxlQTu/file",
+                rating: "Everyone",
+                size: "30.8GB",
+                category: "racing"
+            },
+            {
+                title: "Forza Horizon 4",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/87/Forza_Horizon_4_cover.jpg/250px-Forza_Horizon_4_cover.jpg",
+                download: "https://dayuploads.com/a63ef0FXRGFDcrs/file",
+                rating: "Everyone",
+                size: "52.62GB",
+                category: "racing"
+            },       
+            {
+                title: "Forza Horizon 5",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/8/86/Forza_Horizon_5_cover_art.jpg",
+                download: "https://dayuploads.com/wlFlBO2cuIYiqR2/file",
+                rating: "Everyone",
+                size: "82.1GB",
+                category: "racing"
+            },
+            {
+                title: "Forza Horizon 6",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/d/dd/Forza_Horizon_6_key_art.jpeg/250px-Forza_Horizon_6_key_art.jpeg",
+                download: "https://store.steampowered.com/app/2483190/Forza_Horizon_6/",
+                rating: "Everyone",
+                size: "100GB",
+                category: "racing"
+            },
+            {
+                title: "Forza Motorsport",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEie5DB_m1GH46gKEboq1U9ACiG1ueg00Z5BoRkiN8jNbaQEOHHm8hAL0U86tG4F3YCJJzKEvasUi4qtr6n-PZemnMS4elMGQ6l30Xmqr19bjrJnQHVAAsFdgf5Ot-tArlteOsVDXEfN19l90eZsjIxF5Mj9o8EJcire3ErMYYLs1NMhvuzFuAYjjaXyjOE",
+                download: "https://dayuploads.com/Ms2bHVefpPw2ZEw/file",
+                rating: "Everyone",
+                size: "66.7GB",
+                category: "racing"
+            },
+            {
+                title: "F1 2020",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/8/84/F1_2020_Cover.jpg",
+                download: "https://filecr.com/pc-games/f1-2020-free-download-for-pc-0001/?id=108495774000",
+                rating: "Everyone",
+                size: "32.9GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed Underground 2",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/1/10/Nfsu2-win-cover.jpg",
+                download: "https://dayuploads.com/Wry9YJnuAnLmNcd/file",
+                rating: "Everyone",
+                size: "1.4GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed Most Wanted (2005)",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/8/8e/Need_for_Speed_Most_Wanted_Box_Art.jpg/250px-Need_for_Speed_Most_Wanted_Box_Art.jpg",
+                download: "https://dayuploads.com/xtPw6ebnPGe0sha/file",
+                rating: "Teen",
+                size: "2.08GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed Most Wanted (2005) Remastered",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEgSKqAT5kVpY2xoeaUbYE6fEzLLlU2DLKbZ-HEC5nfpxXryQtfhUhlP_Zzo2Mh1UV2vD7P5N1j_LB3rjaJuI0p5vFrktnX4M4sz7jv3_cBbjKDBNjn3U_LTFfIxBqrUxaqTWvwnu5GKco50smUTHETco-jXUGxwtyWZcx3Vs_tIzBLmiz5voGTNJOK6wdg",
+                download: "https://filecr.com/file-download/?id=317939603000",
+                rating: "Teen",
+                size: "2.9GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed Payback",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEiF6g8CjKoOd6-k7-2vpY0k8w7MKig-8ml-dCCGbUyPjVx4Fds75oFuj2uTU4pHTBjlI40Lng8y0RubqI9ggs317YI4AuUdJGPVHlfb2R8dojl8Ey_TO27ZKFaujTdi1lc48QZhfgZXajOvjmlYREo5LKrwsp2PSHb2EIMzzHXl24s06aMSMObQvw0UlqI",
+                download: "https://dayuploads.com/IxYQSBzWqivGouw/file",
+                rating: "Teen",
+                size: "13.2GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed Heat",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/7/7f/Cover_Art_of_Need_for_Speed_Heat.png",
+                download: "https://dayuploads.com/heimBVuTovBVxV8/file",
+                rating: "Teen",
+                size: "21.5GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed Rivals",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/e/e5/Need_for_Speed_Rivals_cover.jpg/250px-Need_for_Speed_Rivals_cover.jpg",
+                download: "https://dayuploads.com/yniC8H9p45YpHiJ/file",
+                rating: "Teen",
+                size: "6.7GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed The Run",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/7/7c/Needforspeedtheruncover.jpg",
+                download: "https://dayuploads.com/ymhjaZehJRY6gUw/file",
+                rating: "Teen",
+                size: "5.5GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed Hot Pursuit Remastered",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEgIw04TKuFkYpDN5E0qcysMYvXxieEVdsEzXUOoTaaxxpNn9NLchozZQJ9XblmPl0dwvFqVDo1blbWN7ZXE4ypM2UFH4HqyRKe1jUJeaZRDrpmuhQ2c6qqjgnNUq-ewfjhHEzZuFRc4u0OECCnCcXB7bYmXoDZaW_BVFnweTB6lmMs1yqcg9kZ6VmEpHaY",
+                download: "https://dayuploads.com/Zq0ULtxflW5pHKJ/file",
+                rating: "Everyone",
+                size: "3.7GB",
+                category: "racing"
+            },
+            {
+                title: "Need for Speed Unbound",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEhTlCDccNBrH0rXaLoXwWDuXrsm9-wcZHrrschmjsN6VVzkEav2TrU-cvdZFmtVbFJzJ7jIopl2EWgfrVadEUJ-socoIi3n4E_PhVZSdSRLHSgoblDKjY8Z0AJvs0XladXASUUPpgG_ruoxjZxmjQCo1UlirGSMk4jF2dKzcq1_XISJ-ssQnLZgNikT8qs",
+                download: "https://filecr.com/pc-games/need-for-speed-unbound-free-download/",
+                rating: "Teen",
+                size: "31.1GB",
+                category: "racing"
+            },
+            {
+                title: "CarX Street",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEgeBOcEutXOYHsC_DedN0kUq7hN-9-MsaJ6fUBMzGqUoS5sEqZEG1TvCbIDFUqjhkVOISwF0DeSB_RhNHLDuiLqipFjPlN0kpIlPUml3XZXKDtXUPR31xD_ATescxwz0bT_4eqPkgRzgPqE11kjJr9pu_RwmBpNd8FLXyGrJ9Af8yb3jlWWZMeoHU6Ipo8",
+                download: "https://filecr.com/pc-games/carx-street-free-download/",
+                rating: "Teen",
+                size: "16.3GB",
+                category: "racing"
+            },
+            
+            // ADVENTURE GAMES
+            {
+                title: "Red Dead Redemption 1",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/a/a7/Red_Dead_Redemption.jpg",
+                download: "https://dayuploads.com/lIA4LJxarM8r7Z4/file",
+                rating: "Teen",
+                size: "6GB",
+                category: "adventure"
+            },
+            {
+                title: "Red Dead Redemption 2",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/4/44/Red_Dead_Redemption_II.jpg/250px-Red_Dead_Redemption_II.jpg",
+                download: "https://dayuploads.com/9bIWmWeWSkoeyJ2/file",
+                rating: "Mature",
+                size: "68GB",
+                category: "adventure"
+            },
+            {
+                title: "Crysis 1",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEiuvM4uMRQbpY9qfFLMEl_5Z2Zb7qqaUaodXAMSRgYD2QNDVS33UjVfWYC22EK5IBF5u1LxdO1n7ogKYoEIl6EBnSuDc9XWtrnCxVMDHv5yesMGWd-qBAKsIjUMNp91NarYJMi2Qpxi1kC6UcnXtWrXPs3CN9BJ--ztYqb0L3RnOUYR0i2dRUCefekoiE4",
+                download: "https://dayuploads.com/kpbMeEfjS32T6hD/file",
+                rating: "Mature",
+                size: "3.7GB",
+                category: "adventure"
+            },
+            {
+                title: "Crysis 2 Remastered",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/a/a1/Crysis_2_cover.png/250px-Crysis_2_cover.png",
+                download: "https://dayuploads.com/rQ7yEulBzA4SKD8/file",
+                rating: "Mature",
+                size: "29.6GB",
+                category: "adventure"
+            },
+            {
+                title: "Crysis 3 Remastered",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEiMnkZ0g5xcq0h8STxM1-qBV_2_L3-rwt7LSCIAKdIMHL2Cy5FVIGTTr9yTl6u6eTsiWW2NB_14kGFFpLIXbhKOqcn71FtHuHiEysa975fqO175IhSMQTQZKShSI7SsfxV_4SSae4Tr-X2iQ1_eJfukfjMMEjsZ5alfItauAatTPjtQZethdowO1zXfACM",
+                download: "https://dayuploads.com/RkSjoQ4DDOum9qn/file",
+                rating: "Mature",
+                size: "11.6GB",
+                category: "adventure"
+            },
+            {
+                title: "Max payne 1",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/4/4c/Maxpaynebox.jpg",
+                download: "https://filecr.com/pc-games/max-payne-free-download-for-windows-0005/?id=428212584000",
+                rating: "Mature",
+                size: "1.4GB",
+                category: "adventure"
+            },
+            {
+                title: "Max payne 2",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjkvn5nWE11IzJT4UVxDIMYsRs5TlzwDcR5HKal2TvpgCzzW7PPAQzSrnFcwbwl93bZ6SupMfb-_j9MKWUJpttGALhQcS7Te5s1EZEFXkoN2glU-VLB81eEnYPo2slWA3Jvs2X196fGVykDvI_vTe6y90Aof_JNF4mU7MLWvUg8nTBGfSLb4c-x-11cOvk",
+                download: "https://filecr.com/pc-games/max-payne-2-the-fall-of-max-payne-free-download/",
+                rating: "Mature",
+                size: "2GB",
+                category: "adventure"
+            },
+            {
+                title: "Max payne 3",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/2/21/Max_Payne_3_Cover.jpg/250px-Max_Payne_3_Cover.jpg",
+                download: "https://filecr.com/file-download/?id=557564985000",
+                rating: "Mature",
+                size: "13.8GB",
+                category: "adventure"
+            },
+            {
+                title: "Hogwarts Legacy",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/f/fb/Hogwarts_legacyboxart.png/250px-Hogwarts_legacyboxart.png",
+                download: "https://dayuploads.com/sIBBp6dhsdx6n9p/file",
+                rating: "Teen",
+                size: "58.6GB",
+                category: "adventure"
+            },
+            {
+                title: "The-Witcher 1 - Enhanced Edition ",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
+                download: "https://tunnel1.dlproxy.uk/download/XAJeWO15O4C19Ai3Jvuqitqg5l1_CCncB25Eaa4Z71JAAM2ppGVMblIY3AWDW8k1fY0JuJ6RuqfNreqTDOqV3ZNpqRZ8J8r9qy-NDNYXkXNxIUUgSfaRBf-jN1o5PqF7hBd22hoB2eRtt5XcYE84IeqseRU7ASeQumu1bGB31cEVFre6FvwyrP1DUEwM9FEQn_dpq4c26AijmaQ82buI-cvp6aFz7WdBQkwqhrh_Gtzxbo_ykBktaMcnJgnzdSO4gv-CXKJUHpx3-jzfP1RIy6eTuN8JaHC1WLKsXJX0lWM9LLlRYm2Xi5v7RLsQKZ6sSZIThdJ-81EWrwqqJoBbqUYWWqPfc58J3EDSrCTboBAamb39TvU3FFj293oKPcZvG3QllhKULIVPtCRaDJvbU3xFx-cKKZE5k1CUUv0LU-HTjONDVpSa72UC_5KF8fqTSUQ430PVUlZFXNmTkX3VaL4Fzdd7C8V_ZkDXL3GqSKefr_Q_v8rjcugGHcRaaIbCm2pvAVq6Cp8TLc5_G8Q8fnyGuaipIuRCp6z2yymE2Be95CpDfcGmaUsnI7s-fO_YZEoXpCkdeELWe5GPC2BQDyUvD0doUbcXd7S_UJzReDt3UsjLgEEwwijcU8rjR6MY?sig=2UdimMFDgqUR5wlHZlnpG_WQvzndXRi80XX_JW9jyVY",
+                rating: "Mature",
+                size: "10.3GB",
+                category: "adventure"
+            },
+            {
+                title: "The Witcher 2",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
+                download: "https://dayuploads.com/1OrGpkuiUH2QYRv/file",
+                rating: "Mature",
+                size: "63.6GB",
+                category: "adventure"
+            },
+            {
+                title: "The Witcher 3",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/0/0c/Witcher_3_cover_art.jpg",
+                download: "https://dayuploads.com/1OrGpkuiUH2QYRv/file",
+                rating: "Mature",
+                size: "63.6GB",
+                category: "adventure"
+            },
+            {
+                title: "Zelda: Tears of the Kingdom",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/f/fb/The_Legend_of_Zelda_Tears_of_the_Kingdom_cover.jpg",
+                download: "https://filecr.com/pc-games/the-legend-of-zelda-0020/?id=004103975000",
+                rating: "Teen",
+                size: "13GB",
+                category: "adventure"
+            },
+            {
+                title: "Star Wars Jedi: Survivor",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEiRtn-BtlxWJQc08WzOuByQJ9uYOF9foMIcEQK1ruuZSKSzVmL-9hoH9PAqJ_8NSyaDqkSsxdmYS4WVGZE5VAvwhfip1P60Cj1EW-0JmLx7X8HJo4AuEcp-kJ0BevqZZX-2bhIBHuVX4AWPGxrMmZv_pK9mEEutEQiF5OiX4X-YWHaIpXklXnPa-xiMPYw",
+                download: "https://filecr.com/pc-games/star-wars-jedi-survivor-download-0002/?id=271396688000",
+                rating: "Teen",
+                size: "124.6GB",
+                category: "adventure"
+            },
+            {
+                title: "Just Cause 1",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/e/e4/Just-Cause-win-cover.jpg",
+                download: "https://dayuploads.com/kTR58x75GNKaiX4/file",
+                rating: "Mature",
+                size: "4.9GB",
+                category: "adventure"
+            },
+            {
+                title: "Just Cause 2",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/3/3b/Just_Cause_2.jpg",
+                download: "https://dayuploads.com/SzJ9oDqD54dB3EU/file",
+                rating: "Mature",
+                size: "1.7GB",
+                category: "adventure"
+            },          
+            {
+                title: "Just Cause 3",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/f/f2/Just_Cause_3_cover_art.jpg",
+                download: "https://dayuploads.com/AyQWVNKEewT1wHG/file",
+                rating: "Mature",
+                size: "18.7GB",
+                category: "adventure"
+            },
+            {
+                title: "Just Cause 4",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/0/0f/Just_Cause_4_cover.jpg",
+                download: "https://dayuploads.com/Hi9q28mOI6Orf8O/file",
+                rating: "Mature",
+                size: "27.2GB",
+                category: "adventure"
+            },
+            // SPORTS GAMES
+            {
+                title: "Fifa 19",
+                price: "Free",
+                image: "https://assets.goal.com/images/v3/blt81faa8f328082594/95c6404c105923fa7bbef74d30adb35786fa2499.jpg",
+                download: "https://dayuploads.com/TQWxhRdt5farcWG/file",
+                rating: "Everyone",
+                size: "32GB",
+                category: "sports"
+            },
+            {
+                title: "FIFA-2022",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/6/6c/FIFA_22_Cover.jpg",
+                download: "https://dayuploads.com/ct0cNN6t5flF3sd/file",
+                rating: "Everyone",
+                size: "13.2GB",
+                category: "sports"
+            },
+            {
+                title: "FIFA 23",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/a/a6/FIFA_23_Cover.jpg",
+                download: "https://dayuploads.com/YB8XpKyw9mSfPIv/file",
+                rating: "Everyone",
+                size: "54.9GB",
+                category: "sports"
+            },
+            {
+                title: "Cricket 19",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/8/8d/Cricket_19_decalless_cover_art.jpeg",
+                download: "https://dayuploads.com/4psP3Ic98KBHDQ6/file",
+                rating: "Teen",
+                size: "11.4GB",
+                category: "sports"
+            },
+            {
+                title: "Riders Republic",
+                price: "$39.99",
+                image: "https://upload.wikimedia.org/wikipedia/en/0/02/Riders_Republic_cover_art.jpg",
+                download: "https://store.steampowered.com/app/2290180/Riders_Republic/",
+                rating: "Teen",
+                size: "40GB",
+                category: "sports"
+            },
+            
+            // SHOOTING GAMES - Call of Duty ඇතුළුව
+            {
+                title: "Call of Duty Black Ops 1",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjtoKjQPVoj5PKDyb1iSZ7IyLSMaOTiq9OKjhDiKn6r5RB4muqx66lc9b887Jeqti6jtnW7qxmSBS18GIiPFu8Mf8KtWh9B0oGO3aHpY5yr6eJtH87Btk7cVuLNTDHFmXqdRlYc36eigGN0fWmieDbtl_mbQ16vEeyN1FnH5byzBsUSO_B4YDd3_Gv8X7M",
+                download: "https://dayuploads.com/YXZna4MaJsXMhqW/file",
+                rating: "Mature",
+                size: "8.1GB",
+                category: "shooting"
+            },
+            {
+                title: "Call of Duty Black Ops 2",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEhqcFKwr8Hr5-uWi_fxc9lf5piyOetrKT8Ohv__WAClue5OurA4KFrJtvy44c4IB7O3csG7XRP8jeIvk3gW3-EbzZkeArJrCblJEZh-KC-iN3cLVcVurTY6GZSqxdbtrABKkO9EH25FQzGyOoQ06_WWyXtzSa0puZ_jX9sQ1vx3szJBK2DGxLvIwvi0z1s",
+                download: "https://dayuploads.com/iqAoLfaUJ8znrYJ/file",
+                rating: "Mature",
+                size: "18.3GB",
+                category: "shooting"
+            },
+            {
+                title: "Call of Duty Black Ops 6",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEh432AfIYg9aK-Sk0GoK-mlnTYDmRBF6YmUnLNuK-lm-rSlfrLdIH2uJJLm8mXxdHv2_mjMZKeUu5GPzC0k394EufljMvlv_qCocdU6Gr8Wi3ragtXuAxYupZ1Jmw_5pz9Doc6932_1rQ0DNUEf6CA6KzNO3dZ-wry8H4YgwjBeIsEA4Ny2_s-_HYgyFm4",
+                download: "https://dayuploads.com/J8LgSWL8HNAl6cN/file",
+                rating: "Mature",
+                size: "43.8GB",
+                category: "shooting"
+            },
+            {
+                title: "Call of Duty Black Ops Cold War – Ultimate Edition",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEirT3iOQCuN4uEkGLD9l2BFmSz6yMFvbZaO9ORG8HNrAE_rBCRVESOEaNZR0OJAtQdEgLdZRrKy_iVRZNKwH57M_pgwJqO4qSvYTNX4NXBEc727eKMlfgJ9XB6FsnjPi3Xyl4F-4RX7uLA-fp9h5iF5teujJ24-4dsWcpIZY75glhUwHPo36BinC7Gh10M",
+                download: "https://dayuploads.com/XYtjU2Jb1Zh55dJ/file",
+                rating: "Mature",
+                size: "132.1GB",
+                category: "shooting"
+            },
+            {
+                title: "Call of Duty Modern Warfare 2 (2009)",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEiC0VKFjS1Xiq480nOWu5iIXnZPd4n22YqRuVFbtXXdBzkZT20rcD3660LBJcQzgeridOZAwfyWPuOBVrsXWBhNCk-Igole5avTFSt0oXVu8XTj3ae7If6eOtjiMBMzSAq5JIsdgY9yBGUW27Nf58dSF1Q8s8EyWE59A4BNkeau9oLw12thNeQIVgT8Ow8",
+                download: "https://dayuploads.com/WXWFxP22rdGEmut/file",
+                rating: "Mature",
+                size: "9.8GB",
+                category: "shooting"
+            },
+            {
+                title: "Call of Duty Modern Warfare 3 (2011)",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEi6XUkX7GxfcS8c58iq-IHtH1CA43i6F39DtS7qQ-jQty0ufhzFqCcNYUTOpbkyZTnv56ThRdLnIw9kMw79vw5lJt1vXCh2MxHqqHQJBhNYnAhcqs-WECoBDX1RtuyywvDaAmi59lgIIyd7rikhjhvBpGDW0dg9F3eDJSVEKFlpDmQY5CNpvLp-d5tYm3I",
+                download: "https://dayuploads.com/jZRT8JvFE6rtrQv/file",
+                rating: "Mature",
+                size: "11.8GB",
+                category: "shooting"
+            },
+            {
+                title: "Call of Duty Modern Warfare 2019",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEhifHm5di60NZEPAeOxsn-QCxM_fxmp2RUyvoqRD--V29z4nPWFQony8jpWf5EtD8TTpcT-SDRgfTxWdc5hfoHGV8UXj1YUiB-m0d3SK5fbmF6Iy2W1qEZYRD48E483mribRsBUme8dj1XNEZ6plVBI38hc9kPGQ2O9pvfaiFdybnygCAcuCtLcV9JI2PQ",
+                download: "https://dayuploads.com/8cqSve4zW0Gc5c8/file",
+                rating: "Mature",
+                size: "70.9GB",
+                category: "shooting"
+            },
+            {
+                title: "Call of Duty Modern Warfare II (2022)",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjS-3xdQd4kuq82eSiysZrbKEP12zK9cQw7LHPVmK1i2bNbo4jwClX62jAF3qaIUmYsH2diUrJ5zvnfOv_bHgNUWFlJMZciGsKeCCOFzcKqi106vyZ0sT5VLIpOz-sF0bWoT96IWtYLBjRqIXP6X9QPm6Pl4e6MFlt4CdM_bAgriSF6ZcjqZy7cP2la5II",
+                download: "https://dayuploads.com/ojq8ylBRFyK9LtA/file",
+                rating: "Mature",
+                size: "23.1GB",
+                category: "shooting"
+            },
+            {
+                title: "Call of Duty Modern Warfare III (2022)",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjhaf0U40_3mL58-RUHAu8YF8mjQoMLlYxIsgLlh_166MiRE6chYSbLqqyt-O872IV_-Q_wBg60lZW_HebSrv2cvEYLR8GMZt7nlJz7npq7WwXC00VPT_nMfBCOJvjrSHCEEpmY3PGYTnpuUIFvhRPCuKfsozQqg_UvUHpadMaErWu5jdcCYZcFwv6njVE",
+                download: "https://dayuploads.com/9cUeLSfkhVf9qvi/file",
+                rating: "Mature",
+                size: "38.9GB",
+                category: "shooting"
+            },
+            {
+                title: "Battlefield 1",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEivCtxWIdZJhgy9EG7hDpx99chLusd9cteq0HcX-gwBhUA9ZigT471rTERkCb1E7YL6u3OuOzZdBrq0bptkYbpd47luyWgzsj0RmWV5IYqTtUbLypxrjVfo45mThuD3KTWYmG8PUFDExdhHjLu3rFN4K1tIkJFWCv0MU1nthy378lbXWwOUtFhCAmxiQ3o",
+                download: "https://dayuploads.com/WKYFzdgJYMjbY4T/file",
+                rating: "Mature",
+                size: "25.7GB",
+                category: "shooting"
+            },
+            {
+                title: "Battlefield 2",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/thumb/6/62/Battlefield2Cover.jpg/250px-Battlefield2Cover.jpg",
+                download: "https://dayuploads.com/fGcKN9TMr8FgTMY/file",
+                rating: "Mature",
+                size: "3.5GB",
+                category: "shooting"
+            },
+            {
+                title: "Battlefield 3",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/6/69/Battlefield_3_Game_Cover.jpg",
+                download: "https://dayuploads.com/ZmSIyqEdkRhTjk9/file",
+                rating: "Mature",
+                size: "14.04GB",
+                category: "shooting"
+            },
+            {
+                title: "Battlefield 4",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEgX93XfPg1FIEnLwVQdLBl-goEqmpmR7T1h5AS2gFrQkuRDNm3jyx4G4iMYfVBLqZtuKR980i8ftxJM_aDHvOkWMVYUtL_wWbj4S7WGyUNBCF9vlTqwyvZD5W7oAFlv7nrr_BDg9Z00bYygztyVS0pSoRttBFD_0uGXY48Rbmo5iMZ2EbJG5MzWHamNgiA",
+                download: "https://dayuploads.com/qyQXnynf5QkToDx/file",
+                rating: "Mature",
+                size: "25.5GB",
+                category: "shooting"
+            },
+            {
+                title: "Battlefield 5",
+                price: "Free",
+                image: "https://upload.wikimedia.org/wikipedia/en/f/f0/Battlefield_V_standard_edition_box_art.jpg",
+                download: "https://tjrksciow.pro/?v=5090d13fade7d07cf55da82c17ed01e4&uid=1028&sid=pivMIWBdJ5wj8PNuaYbTcmflegq&JVqRibS81vk9N",
+                rating: "Mature",
+                size: "54.4GB",
+                category: "shooting"
+            },
+            {
+                title: "Battlefield 6",
+                price: "Free",
+                image: "https://blogger.googleusercontent.com/img/a/AVvXsEjA0EzZ1dneeyVVoRJGKfBjvkZi7nvJXHoljYGbKQEj2R1z9GvwEvaPFNs0mu_XVkrg84Tx6LBV87pRMlKuXqV5CT1AJajfdT2j-0zeA__ExFNlU2oMjfpNdzMy5OLgPorKhSo0wCUjwvG2gECgTfSpGZeO8esvhgBuBZgRkka_ZN-HjW_FTauK7EhSWp8",
+                download: "https://dayuploads.com/M7np8XSvfkRdSQP/file",
+                rating: "Mature",
+                size: "55.5GB",
+                category: "shooting"
+            },
+        ];
+
+        // Organize games by category for easy access
+        const gamesData = {
+            action: gamesDatabase.filter(g => g.category === 'action'),
+            racing: gamesDatabase.filter(g => g.category === 'racing'),
+            adventure: gamesDatabase.filter(g => g.category === 'adventure'),
+            sports: gamesDatabase.filter(g => g.category === 'sports'),
+            shooting: gamesDatabase.filter(g => g.category === 'shooting'),
+            strategy: gamesDatabase.filter(g => g.category === 'strategy')
+        };
+
+        // Page Load Animation
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.getElementById('loader').classList.add('hidden');
+            }, 1500);
+            
+            createParticles();
+        });
+
+        // Custom Cursor
+        const cursor = document.getElementById('cursor');
+        const cursorFollower = document.getElementById('cursor-follower');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX - 10 + 'px';
+            cursor.style.top = e.clientY - 10 + 'px';
+            
+            setTimeout(() => {
+                cursorFollower.style.left = e.clientX - 20 + 'px';
+                cursorFollower.style.top = e.clientY - 20 + 'px';
+            }, 100);
+        });
+
+        // Hover effects for cursor
+        document.querySelectorAll('a, button, .category-card, .game-card, input').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                cursor.style.transform = 'scale(1.5)';
+                cursorFollower.style.transform = 'scale(1.5)';
+            });
+            el.addEventListener('mouseleave', () => {
+                cursor.style.transform = 'scale(1)';
+                cursorFollower.style.transform = 'scale(1)';
+            });
+        });
+
+        // Mobile Menu Toggle
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        function closeMenu() {
+            document.getElementById('navLinks').classList.remove('active');
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                if(this.getAttribute('href') !== '#') {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            });
+        });
+
+        // Particle System
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const particleCount = 50;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(particle);
+            }
+        }
+
+        // Show Games by Category
+        function showGames(category) {
+            const categoriesGrid = document.getElementById('categoriesGrid');
+            const gamesContainer = document.getElementById('gamesContainer');
+            const gamesGrid = document.getElementById('gamesGrid');
+            const categoryTitle = document.getElementById('categoryTitle');
+            
+            // Hide categories, show games
+            categoriesGrid.style.display = 'none';
+            gamesContainer.classList.add('active');
+            
+            // Set title
+            categoryTitle.textContent = category.charAt(0).toUpperCase() + category.slice(1) + ' Games';
+            
+            // Clear previous games
+            gamesGrid.innerHTML = '';
+            
+            // Populate games
+            const games = gamesData[category];
+            games.forEach((game, index) => {
+                const gameCard = createGameCard(game, index);
+                gamesGrid.appendChild(gameCard);
+            });
+            
+            // Scroll to games
+            gamesContainer.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        // Create Game Card HTML
+        function createGameCard(game, index) {
+            const gameCard = document.createElement('div');
+            gameCard.className = 'game-card';
+            gameCard.style.animationDelay = (index * 0.1) + 's';
+            
+            gameCard.innerHTML = `
+                <div class="game-image">
+                    <img src="${game.image}" alt="${game.title}" loading="lazy" onerror="this.src='https://via.placeholder.com/300x200/1a1a2e/00f3ff?text=${encodeURIComponent(game.title)}'">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">${game.title}</h3>
+                    <div class="game-meta">
+                        <span>${game.rating}</span>
+                        <span>${game.size}</span>
+                    </div>
+                    <div class="game-price">${game.price}</div>
+                    <a href="${game.download}" target="_blank" class="download-btn" style="margin-top: 15px;">
+                        Download Now
+                    </a>
+                </div>
+            `;
+            
+            return gameCard;
+        }
+
+        // Show Categories (Back Button)
+        function showCategories() {
+            const categoriesGrid = document.getElementById('categoriesGrid');
+            const gamesContainer = document.getElementById('gamesContainer');
+            
+            gamesContainer.classList.remove('active');
+            categoriesGrid.style.display = 'grid';
+            
+            // Scroll to categories
+            document.getElementById('category').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Search Functionality
+        const searchInput = document.getElementById('searchInput');
+        const searchResults = document.getElementById('searchResults');
+
+        searchInput.addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase().trim();
+            
+            if (query.length === 0) {
+                searchResults.classList.remove('active');
+                return;
+            }
+            
+            const filtered = gamesDatabase.filter(game => 
+                game.title.toLowerCase().includes(query)
+            );
+            
+            displaySearchResults(filtered);
+        });
+
+        // Close search when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.search-container')) {
+                searchResults.classList.remove('active');
+            }
+        });
+
+        function displaySearchResults(games) {
+            searchResults.innerHTML = '';
+            
+            if (games.length === 0) {
+                searchResults.innerHTML = '<div class="search-result-item"><span>No games found</span></div>';
+            } else {
+                games.forEach(game => {
+                    const item = document.createElement('div');
+                    item.className = 'search-result-item';
+                    item.innerHTML = `
+                        <img src="${game.image}" alt="${game.title}" onerror="this.style.display='none'">
+                        <span>${game.title}</span>
+                    `;
+                    item.onclick = () => {
+                        window.open(game.download, '_blank');
+                        searchResults.classList.remove('active');
+                        searchInput.value = '';
+                    };
+                    searchResults.appendChild(item);
+                });
+            }
+            
+            searchResults.classList.add('active');
+        }
+
+        // Navbar Scroll Effect
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.style.background = 'rgba(15, 15, 15, 0.98)';
+                nav.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(0, 243, 255, 0.2)';
+            } else {
+                nav.style.background = 'var(--nav-gradient)';
+                nav.style.boxShadow = '0 10px 40px rgba(0, 0, 0, 0.5), 0 0 20px rgba(0, 243, 255, 0.1)';
+            }
+        });
+
+        // Intersection Observer for Scroll Animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements
+        document.querySelectorAll('.category-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease-out';
+            observer.observe(el);
+        });
+
+        /* ============================================
+           HOW TO ADD NEW GAMES:
+           
+           Simply copy this template and add to gamesDatabase array above:
+           
+           {
+               title: "Your Game Name",
+               price: "$XX.XX",
+               image: "https://your-image-url.jpg",
+               download: "https://your-download-link.com",
+               rating: "Everyone/Teen/Mature",
+               size: "XXGB",
+               category: "action/racing/adventure/sports/shooting/strategy"
+           }
+           
+           That's it! The game will automatically appear in:
+           - Its category
+           - Search results
+           - With working download button
+           ============================================ */
+    </script>
+</body>
+</html>
