@@ -2734,190 +2734,6 @@
             border-color: var(--neon-pink);
             box-shadow: 0 0 20px rgba(255, 0, 64, 0.4);
         }
-/* Ad Blocker Modal Styles */
-#adblock-modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(5, 5, 8, 0.98);
-    backdrop-filter: blur(20px);
-    z-index: 99999; /* Above loader */
-    display: none;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-}
-
-#adblock-modal.active {
-    display: flex;
-    opacity: 1;
-}
-
-.adblock-content {
-    background: rgba(20, 20, 30, 0.95);
-    border: 2px solid var(--neon-red);
-    border-radius: 25px;
-    padding: 50px 40px;
-    max-width: 450px;
-    text-align: center;
-    position: relative;
-    box-shadow: 0 0 60px rgba(255, 0, 64, 0.3),
-                inset 0 0 30px rgba(255, 0, 64, 0.1);
-    transform: scale(0.8) translateY(50px);
-    opacity: 0;
-    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Icon animations */
-.adblock-icon-wrap {
-    width: 90px;
-    height: 90px;
-    margin: 0 auto 25px;
-    position: relative;
-}
-
-.adblock-icon-ring {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    border: 3px solid var(--neon-red);
-    border-radius: 50%;
-    animation: pulseRing 2s ease-out infinite;
-}
-
-@keyframes pulseRing {
-    0%, 100% { transform: scale(1); opacity: 1; }
-    50% { transform: scale(1.15); opacity: 0.5; }
-}
-
-.adblock-icon-inner {
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    right: 8px;
-    bottom: 8px;
-    background: linear-gradient(135deg, rgba(255,0,64,0.2), rgba(255,0,64,0.05));
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid var(--neon-red);
-    animation: iconFloat 3s ease-in-out infinite;
-    font-size: 2.5rem;
-}
-
-@keyframes iconFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-8px); }
-}
-
-/* Title with glow */
-.adblock-title {
-    font-family: 'Orbitron', sans-serif;
-    font-size: 1.6rem;
-    color: var(--neon-red);
-    margin-bottom: 15px;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    text-shadow: 0 0 20px rgba(255, 0, 64, 0.5);
-    animation: textGlow 2s ease-in-out infinite alternate;
-}
-
-@keyframes textGlow {
-    from { text-shadow: 0 0 10px rgba(255, 0, 64, 0.5); }
-    to { text-shadow: 0 0 30px rgba(255, 0, 64, 0.8), 0 0 50px rgba(255, 0, 64, 0.4); }
-}
-
-/* Animated divider */
-.adblock-divider {
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--neon-red), transparent);
-    margin: 20px 0;
-    position: relative;
-    overflow: hidden;
-}
-
-.adblock-divider::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, #fff, transparent);
-    animation: shimmerMove 2s infinite;
-}
-
-@keyframes shimmerMove {
-    0% { left: -100%; }
-    100% { left: 100%; }
-}
-
-/* Top line pulse */
-.adblock-topline {
-    position: absolute;
-    top: -2px;
-    left: 15%;
-    right: 15%;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--neon-red), transparent);
-    box-shadow: 0 0 20px var(--neon-red);
-    animation: topLinePulse 3s ease-in-out infinite;
-}
-
-@keyframes topLinePulse {
-    0%, 100% { opacity: 1; box-shadow: 0 0 20px var(--neon-red); }
-    50% { opacity: 0.6; box-shadow: 0 0 40px var(--neon-red); }
-}
-
-/* Buttons */
-.adblock-btn-main {
-    background: linear-gradient(45deg, var(--neon-red), #ff4757);
-    border: none;
-    color: #fff;
-    padding: 14px 35px;
-    border-radius: 30px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.9rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    cursor: pointer;
-    transition: all 0.3s;
-    box-shadow: 0 5px 25px rgba(255, 0, 64, 0.4);
-    width: 100%;
-    margin-bottom: 12px;
-}
-
-.adblock-btn-main:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 35px rgba(255, 0, 64, 0.6);
-}
-
-.adblock-btn-secondary {
-    background: transparent;
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.6);
-    padding: 10px 25px;
-    border-radius: 25px;
-    font-family: 'Orbitron', sans-serif;
-    font-size: 0.75rem;
-    cursor: pointer;
-    transition: all 0.3s;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    width: 100%;
-}
-
-.adblock-btn-secondary:hover {
-    border-color: var(--neon-red);
-    color: var(--neon-red);
-}
         /* ============================================
            DONATION MODAL STYLES
            ============================================ */
@@ -3069,40 +2885,57 @@
             letter-spacing: 1px;
         }
     </style>
+<script>
+// Ad Blocker Detection - Page load වෙනකොටම check කරනවා
+window.addEventListener('load', function() {
+    const bait = document.querySelector('.adsbygoogle');
+    const modal = document.getElementById('adblock-modal');
+    const nameSpan = document.getElementById('adblocker-name');
+
+    // බොහෝ ad blockers මේ div එක hide කරනවා / size 0 කරනවා
+    if (bait && (bait.offsetHeight === 0 || getComputedStyle(bait).display === 'none')) {
+        
+        let blockerName = "Ad Blocker එකක්";
+
+        // ටිකක් නම guess කරමු (100% නැතත් බොහෝ වෙලාවට වැඩ)
+        if (navigator.userAgent.includes('Chrome') && window.chrome) {
+            blockerName = "AdBlock / uBlock Origin";
+        } else if (navigator.userAgent.includes('Firefox')) {
+            blockerName = "uBlock Origin / AdGuard";
+        } else if (navigator.userAgent.includes('Edg/')) {
+            blockerName = "Edge built-in Ad Blocker";
+        }
+
+        nameSpan.textContent = blockerName;
+        
+        // Modal පෙන්වනවා + ඔයාගේ animations trigger වෙනවා
+        modal.style.display = 'flex';
+        setTimeout(() => modal.classList.add('active'), 100); // ඔයාගේ CSS animation එකට match වෙන්න
+    }
+});
+</script>
 </head>
 <body oncontextmenu="return false;">
+<div id="adblock-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:99999; justify-content:center; align-items:center;">
+    <div style="background:#111; border:2px solid #ff0040; border-radius:15px; padding:40px; max-width:450px; text-align:center; box-shadow:0 0 40px #ff0040;">
+        <h2 style="color:#ff0040; font-size:2rem; margin-bottom:20px;">Ad Blocker හමු වුණා!</h2>
+        <p style="color:#ccc; font-size:1.1rem;">
+            ඔයා භාවිතා කරනවා <strong id="adblock-name">Ad Blocker එකක්</strong>.<br>
+            කරුණාකරලා ඒක disable කරලා site එක refresh කරන්න.<br>
+            Ads නැතුව අපිට මේ site එක free ව maintain කරන්න බෑ.
+        </p>
+        <button onclick="location.reload()" style="margin-top:20px; padding:12px 30px; background:#ff0040; color:white; border:none; border-radius:8px; font-size:1.1rem; cursor:pointer;">
+            Disable කළාට පස්සේ Refresh කරන්න
+        </button>
+    </div>
+</div>
+
+<!-- Ad blocker detection bait -->
+<div class="adsbygoogle" style="display:block; height:1px; width:1px; position:absolute; left:-9999px;"></div>
     <!-- Loading Screen -->
     <div class="loader" id="loader">
         <div class="loader-text">Veczom</div>
     </div>
-<!-- Ad Blocker Modal -->
-<div id="adblock-modal">
-    <div class="adblock-content">
-        <div class="adblock-topline"></div>
-        
-        <div class="adblock-icon-wrap">
-            <div class="adblock-icon-ring"></div>
-            <div class="adblock-icon-inner">🚫</div>
-        </div>
-        
-        <h2 class="adblock-title">Ad Blocker Detected!</h2>
-        
-        <p class="adblock-text">
-            We noticed you're using an ad blocker. Ads help us keep Veczom GameZone free for everyone.
-            Please consider disabling it to support our platform.
-        </p>
-        
-        <div class="adblock-divider"></div>
-        
-        <button class="adblock-btn-main" onclick="continueWithAdblock()">
-            Continue Anyway
-        </button>
-        
-        <button class="adblock-btn-secondary" onclick="closeAdblockModal()">
-            I've Disabled It
-        </button>
-    </div>
-</div>
 <!-- NEW RELEASE POPUP -->
 <div id="new-release-popup" style="
     position: fixed;
@@ -3846,6 +3679,7 @@ document.addEventListener('keydown', (e) => {
     </footer>
     <script>
 
+
         /* ============================================
            VECZOM GAME STORE - JAVASCRIPT
            Complete Game Database with Images & Links
@@ -3878,103 +3712,7 @@ function getStarRatingHTML(popularity) {
     starsHTML += '</div>';
     return starsHTML;
 }
-// ============================================
-// AD BLOCKER DETECTOR - STARTUP
-// ============================================
-
-// Ad blocker detection method
-function detectAdBlocker() {
-    return new Promise((resolve) => {
-        // Method 1: Check if ad script loaded
-        const testAd = document.createElement('div');
-        testAd.innerHTML = '&nbsp;';
-        testAd.className = 'adsbox';
-        testAd.style.position = 'absolute';
-        testAd.style.left = '-9999px';
-        document.body.appendChild(testAd);
-        
-        setTimeout(() => {
-            const isBlocked = testAd.offsetHeight === 0 || 
-                             getComputedStyle(testAd).display === 'none' ||
-                             getComputedStyle(testAd).visibility === 'hidden';
-            document.body.removeChild(testAd);
-            resolve(isBlocked);
-        }, 100);
-    });
-}
-
-// Get ad blocker name (basic detection)
-function getAdblockerName() {
-    // Check for common ad blockers
-    if (window.uBlockOrigin !== undefined) return 'uBlock Origin';
-    if (window.AdGuard !== undefined) return 'AdGuard';
-    if (document.getElementById('adguard-assistant')) return 'AdGuard';
-    if (window.adblockPlus !== undefined) return 'Adblock Plus';
-    if (window.ghostery !== undefined) return 'Ghostery';
-    
-    // Check extensions by common element blocking
-    const testImg = new Image();
-    testImg.src = 'https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js';
-    
-    // Default unknown
-    return 'Unknown Ad Blocker';
-}
-
-// Show adblock modal
-function showAdblockModal(blockerName) {
-    const modal = document.getElementById('adblock-modal');
-    const content = modal.querySelector('.adblock-content');
-    
-    // Update blocker name
-    const nameElement = content.querySelector('.adblock-title');
-    if (nameElement && blockerName !== 'Unknown Ad Blocker') {
-        nameElement.innerHTML = `<span style="color: var(--neon-red);">${blockerName}</span> Detected!`;
-    }
-    
-    modal.classList.add('active');
-    
-    // Animation
-    setTimeout(() => {
-        content.style.transform = 'scale(1) translateY(0)';
-        content.style.opacity = '1';
-    }, 100);
-}
-
-// Close adblock modal
-function closeAdblockModal() {
-    const modal = document.getElementById('adblock-modal');
-    const content = modal.querySelector('.adblock-content');
-    
-    content.style.transform = 'scale(0.8) translateY(50px)';
-    content.style.opacity = '0';
-    
-    setTimeout(() => {
-        modal.classList.remove('active');
-    }, 300);
-}
-
-// Initialize on page load
-window.addEventListener('load', async () => {
-    const hasAdBlocker = await detectAdBlocker();
-    
-    if (hasAdBlocker) {
-        const blockerName = getAdblockerName();
-        showAdblockModal(blockerName);
-    } else {
-        // Continue with normal loading
-        setTimeout(() => {
-            document.getElementById('loader').classList.add('hidden');
-        }, 1500);
-    }
-});
-
-// Continue button handler
-function continueWithAdblock() {
-    closeAdblockModal();
-    setTimeout(() => {
-        document.getElementById('loader').classList.add('hidden');
-    }, 500);
-}      
+      
 // ============================================
 // USER-SPECIFIC DOWNLOAD TRACKING SYSTEM
 // ============================================
@@ -4293,7 +4031,6 @@ function updateSecurityDisplay() {
         }
     }
 }
-
 // Track download for current user
 function trackDownload(gameTitle, downloadUrl) {
     const user = getCurrentUser();
@@ -7362,7 +7099,6 @@ function handleLogout() {
             }
         `;
         document.head.appendChild(style);
-
         /* ============================================
            DONATION MODAL FUNCTIONS
            ============================================ */
@@ -7388,4 +7124,4 @@ function handleLogout() {
 </body>
 </html>
 <script async="async" data-cfasync="false" src="https://pl28726110.effectivegatecpm.com/356496aefaaaacaf3a611cf2c71557ac/invoke.js     "></script>
-<div id="container-356496aefaaaacaf3a611cf2c71557ac"></div>
+<div id="container-356496aefaaaacaf3a611cf2c71557ac"></div>  
