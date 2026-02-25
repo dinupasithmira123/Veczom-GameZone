@@ -2885,31 +2885,6 @@
             letter-spacing: 1px;
         }
     </style>
-<script>
-window.addEventListener('load', function() {
-    const bait = document.querySelector('.adsbygoogle');
-    const modal = document.getElementById('adblock-modal');
-    const nameDisplay = document.getElementById('adblock-name');
-
-    // බොහෝ ad blockers bait element එක hide කරනවා / height 0 කරනවා
-    if (bait && (bait.offsetHeight === 0 || getComputedStyle(bait).display === 'none')) {
-        
-        let blockerName = "Ad Blocker එකක්";
-        
-        // ටිකක් නම හඳුනාගන්න උත්සාහ කරමු (100% නැතත් බොහෝ වෙලාවට වැඩ කරනවා)
-        if (navigator.userAgent.includes('Chrome') && window.chrome) {
-            blockerName = "AdBlock / uBlock Origin";
-        } else if (navigator.userAgent.includes('Firefox')) {
-            blockerName = "uBlock Origin / AdGuard";
-        } else if (navigator.userAgent.includes('Edge')) {
-            blockerName = "Edge built-in blocker";
-        }
-
-        nameDisplay.textContent = blockerName;
-        modal.style.display = 'flex';
-    }
-});
-</script>
 </head>
 <body oncontextmenu="return false;">
 <div id="adblock-modal" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:99999; justify-content:center; align-items:center;">
